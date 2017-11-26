@@ -1,0 +1,38 @@
+{
+  "name": "salador/uslugi",
+  "description": "Package Uslugi for Orchid CMS",
+  "type": "library",
+  "keywords": [
+    "Orchid",
+    "uslugi",
+    "laravel"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pavel Salador",
+      "email": "Salador2005@yandex.ru"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "salador/uslugi": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Salador\\Uslugi\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Salador\\Uslugi\\UslugiServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

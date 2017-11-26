@@ -1,4 +1,8 @@
 <?php
 return [
-    'usluga' => null
+    'middleware' => [
+        'public'  => ['web'],
+        'private' => ['web', 'dashboard'],  //обращаться через config('uslugi.middleware.private')
+    ],
+
 ];
