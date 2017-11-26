@@ -31,3 +31,5 @@ git config user.email ivanov@example.com
 4) Можно посмотреть историю изменений `git log`, но не нужно
 5) Загрузка в репозиторий на github `git push origin master` далее вводим логин пароль.
 
+## Создание пакета в laravel
+Используется статья [Разработка пакета для Laravel 5. Пошаговая инструкция с картинками.](https://laravel-news.ru/blog/tutorials/develop-laravel5-package-step-by-step)
