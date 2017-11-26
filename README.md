@@ -33,3 +33,23 @@ git config user.email ivanov@example.com
 
 ## Создание пакета в laravel
 Используется статья [Разработка пакета для Laravel 5. Пошаговая инструкция с картинками.](https://laravel-news.ru/blog/tutorials/develop-laravel5-package-step-by-step)
+Также использовал расширение [Monitor](https://github.com/TheOrchid/Monitor) для Orchid CMS/
+
+
+1) Ошибка была в том, что пакет создал в каталоге vandor, потом в корневом каталоге Laravel добавил папку Package, а уже в неё установил свой пакет.
+2) В корневом файле composer.json установленного Laravel добавил строки чтобы искал пакет в каталоге pachage
+```
+	 "repositories": [
+        {
+			"packagist.org": false,
+            "type": "path",
+            "url": "./package/uslugi"
+        }
+	]
+```
+3) Подключил с помощью команды `composer require salador/uslugi:dev-master --prefer-source` правда в vendor он установил только ссылку.
+4) Опубликовал провайдера с помощью команды `php artisan vendor:publish --provider="Salador\Uslugi\UslugiServiceProvider"`
+5) Зашел в админку, добавил разрешение - отобразилась иконка "Услуг"
+
+
+
