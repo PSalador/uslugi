@@ -1,8 +1,11 @@
 <?php
 return [
-    'Uslugi'     => 'Services',
-    'description' => 'Server Status Information',
-    'disabled'    => 'The operating system or PHP settings are not supported by the monitor',
+    'Uslugi'     	=> 'Services',
+    'description' 	=> 'Server Status Information',
+	'Service'		=> 'Service',
+	'Services'		=> 'Services',
+	'measure'		=> 'Measure',
+    'disabled'    	=> 'The operating system or PHP settings are not supported by the monitor',
     'Hardware' => [
         'Title'             => 'Hardware',
         'Uptime'            => 'Uptime',

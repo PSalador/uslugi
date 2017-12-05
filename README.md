@@ -48,12 +48,21 @@ git config user.email ivanov@example.com
 	]
 ```
 3) Подключил с помощью команды `composer require salador/uslugi:dev-master --prefer-source` правда в vendor он установил только ссылку.
-4) Опубликовал провайдера с помощью команды `php artisan vendor:publish --provider="Salador\Uslugi\UslugiServiceProvider"`
-5) Зашел в админку, добавил разрешение - отобразилась иконка "Услуг"
+4) Опубликовал провайдера с помощью команды `php artisan vendor:publish --provider="Salador\Uslugi\Providers\UslugiServiceProvider"`
+5) Установить таблицы данных `php artisan migrate`
+6) Зашел в админку, добавил разрешение - отобразилась иконка "Услуг"
 
 ## Команды Laravel
 
 `dd();` //Просмотр отладочной информации как var_dump
 
+## Orchid Platform
+
+class FormGroup создает группы с табами. Таб можно добавлять через слушатели (Event, Lisener).
+
+1) В папке src/Providers - провайдеры котрые запускаются когда устанавливается пакет.
+2) В папке src/Http/Controllers - контроллеры на которые перекидывает файл routes/route.php (он обрабатывает все пути сайта)
+3) В папке src/Http/Forms - классы форм 
+4)  
 
 

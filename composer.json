@@ -28,7 +28,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Salador\\Uslugi\\UslugiServiceProvider"
+        "Salador\\Uslugi\\Providers\\UslugiServiceProvider"
       ]
     }
   },
