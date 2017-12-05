@@ -5,6 +5,18 @@ return [
 	'Service'		=> 'Service',
 	'Services'		=> 'Services',
 	'measure'		=> 'Measure',
+	'Master'		=> [
+        'Title'           	=> 'Master',
+        'Titles'           	=> 'Masters',
+        'description'       => 'Master description',
+    ],
+	'Price'		=> [
+        'Title'           	=> 'Price',
+        'Titles'           	=> 'Prices',
+        'description'       => 'Price description',
+    ],
+	
+	
     'disabled'    	=> 'The operating system or PHP settings are not supported by the monitor',
     'Hardware' => [
         'Title'             => 'Hardware',
