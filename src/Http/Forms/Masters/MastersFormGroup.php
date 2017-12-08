@@ -51,7 +51,7 @@ class MastersFormGroup extends FormGroup
 		
 		$master = \Salador\Uslugi\Behaviors\MasterBase::class;
         $master = (new $master);
-		//dd(Service::paginate());
+		//dd(Master::paginate());
 		return view('salador/uslugi::masters.grid', [
             'services' => Master::paginate(),
             'grid'  => $master->grid(),

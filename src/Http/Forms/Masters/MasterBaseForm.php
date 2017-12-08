@@ -52,7 +52,8 @@ class MasterBaseForm extends Form
         return $this->behavior->rules();
         return [
             'name'  => 'required|max:255',
-            'measure' => 'required|max:30',
+            'adress' => 'required|max:255',
+            'phone' => 'required|max:255',
         ];
     }
 
@@ -65,6 +66,7 @@ class MasterBaseForm extends Form
      */
     public function get(Master $master = null) : View
     {
+		//dd($this->behavior->fields());
         return view('salador/uslugi::masters.info', [
             'service'     => $master ?: new $this->model(),
             'language' => App::getLocale(),

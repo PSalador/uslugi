@@ -26,7 +26,7 @@ class UslugiServiceProvider extends ServiceProvider
 		//Регистрация провайдера слушателя
 		$this->app->register(EventServiceProvider::class);
 		
-		// Регистрируем доступы к услугам. Их нужно бдет включить
+		// Регистрируем доступы к услугам. Их нужно бдет включить в ролях полязователя
         $dashboard->permission->registerPermissions([      
             'Main' => [[
                 'slug'        => 'dashboard.uslugi',

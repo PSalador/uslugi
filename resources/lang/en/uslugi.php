@@ -9,11 +9,19 @@ return [
         'Title'           	=> 'Master',
         'Titles'           	=> 'Masters',
         'description'       => 'Master description',
+        'user'       		=> 'User',
+        'adress'       		=> 'Adress',
+        'phone'       		=> 'Phone',
+        'email'       		=> 'Email',
+        'location'       	=> 'Location',
     ],
 	'Price'		=> [
         'Title'           	=> 'Price',
         'Titles'           	=> 'Prices',
         'description'       => 'Price description',
+    ],
+	'Select'		=> [
+        'novalue'           => 'No Value',
     ],
 	
 	

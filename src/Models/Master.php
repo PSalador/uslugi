@@ -17,7 +17,10 @@ class Master extends Model
         'email',
     ];							// Поля массово изменяемые
 	
-	
+	public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 	
 	
 }
