@@ -11,14 +11,14 @@ class MastersTable extends Migration
     public function up()
     {
 		//Таблица мастаеров, каждый пользователь может добавить несколько мастеров.
+		Schema::dropIfExists('Masters');
         Schema::create('Masters', function (Blueprint $table) {
             $table->increments('id');
 			$table->integer('user_id')->unsigned();
             $table->string('name');
-            $table->string('adress');
+            $table->json('adress');
 			$table->string('phone');
 			$table->string('email');
-            $table->point('location')->nullable();
             $table->timestamps();
         });
     }

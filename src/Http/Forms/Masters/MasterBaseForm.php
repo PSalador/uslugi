@@ -52,7 +52,6 @@ class MasterBaseForm extends Form
         return $this->behavior->rules();
         return [
             'name'  => 'required|max:255',
-            'adress' => 'required|max:255',
             'phone' => 'required|max:255',
         ];
     }
@@ -66,9 +65,14 @@ class MasterBaseForm extends Form
      */
     public function get(Master $master = null) : View
     {
-		//dd($this->behavior->fields());
+		
+		$master=$master ?: new $this->model();
+		//$master::attributes['adress']=json_decode($master->attributes['adress']);
+		//dd($this);
+		$master->GetAllUsers()->setAdressJson();
+		//dd($master);
         return view('salador/uslugi::masters.info', [
-            'service'     => $master ?: new $this->model(),
+            'service'     => $master,
             'language' => App::getLocale(),
             'locales'  => config('platform.locales'),
             'fields'   => $this->behavior->fields(),
@@ -87,6 +91,13 @@ class MasterBaseForm extends Form
     {
 		//dd($request);
         $attributes = $request->all();
+		//dd($attributes);
+		//$attributes['location']= \DB::raw("GeomFromText('POINT(".$attributes['adress']['lat']." ".$attributes['adress']['lng'].")')");//"POINT(".$attributes['adress']['lat']." ".$attributes['adress']['lng'].")";
+		//$attributes['adress']=$attributes['adress']['name'];
+	
+		$attributes['adress']=json_encode($attributes['adress']);
+	
+		//dd($attributes);
         if (is_null($master)) {
             $master = new Master();
         }

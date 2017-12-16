@@ -9,6 +9,8 @@ use Orchid\Platform\Forms\Form;
 use Salador\Uslugi\Events\PriceEvent;
 use Salador\Uslugi\Models\Price;
 
+use Salador\Uslugi\Models\Master as Master;
+use Salador\Uslugi\Models\Service as Service;
 
 
 class PricesFormGroup extends FormGroup
@@ -51,9 +53,10 @@ class PricesFormGroup extends FormGroup
 		
 		$price = \Salador\Uslugi\Behaviors\PriceBase::class;
         $price = (new $price);
-		//dd(Service::paginate());
+		$ArrPrices =Price::with(['Master','Service'])->paginate();
+		//dd($ArrPrices);
 		return view('salador/uslugi::prices.grid', [
-            'services' => Price::paginate(),
+            'services' => $ArrPrices,
             'grid'  => $price->grid(),
         ]);
     }

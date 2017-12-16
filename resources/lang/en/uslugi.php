@@ -19,6 +19,8 @@ return [
         'Title'           	=> 'Price',
         'Titles'           	=> 'Prices',
         'description'       => 'Price description',
+		'volume'			=> 'Volume',
+		'price'				=> 'Price',
     ],
 	'Select'		=> [
         'novalue'           => 'No Value',

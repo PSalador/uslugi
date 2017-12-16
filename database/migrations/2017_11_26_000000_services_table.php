@@ -11,6 +11,7 @@ class ServicesTable extends Migration
     public function up()
     {
 		// Таблица услуг
+		Schema::dropIfExists('Services');
         Schema::create('Services', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

@@ -4,10 +4,13 @@ namespace Salador\Uslugi\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Salador\Uslugi\Models\Price as Price;
+
 class Service extends Model
 {
     //
 	protected $table = 'Services';  //Подключить таблицу к модели  по умолчению название класса+s (Services)
+	
 	
 	
 	protected $fillable = [
@@ -16,6 +19,14 @@ class Service extends Model
     ];							// Поля массово изменяемые
 	
 	
+	public function prices()
+    {
+        return $this->hasMany(Price);
+    }
 	
+	public function GetAll()
+    {
+		return $this::pluck('name','id')->all();
+	}
 	
 }

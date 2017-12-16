@@ -2,7 +2,7 @@
 
 namespace Salador\Uslugi\Behaviors;
 
-use Orchid\Platform\Core\Models\User;
+
 
 class MasterBase
 {
@@ -22,11 +22,7 @@ class MasterBase
      */
     public function fields() : array
     {
-		$selusers = User::whereHas(
-			'roles', function($q){
-				$q->where('slug', 'admin');
-			}
-		)->get()->pluck('name','id')->all();
+
 			
 		//dd($selusers);
 		
@@ -41,7 +37,6 @@ class MasterBase
                 'title'       => trans('salador/uslugi::uslugi.Master.user'),
                 'placeholder' => trans('salador/uslugi::uslugi.Master.user'),
 				'novalue'	  => trans('salador/uslugi::uslugi.Select.novalue'),
-				'values'	  => $selusers, 
             ],
 			
             'name'     => [
@@ -54,8 +49,8 @@ class MasterBase
                 'placeholder' => trans('salador/uslugi::uslugi.Master.Title'),
             ],
             'adress'    => [
-                'tag'         => 'input',
-                'type'        => 'text',
+                'tag'         => 'place',
+                'type'        => 'json',
                 'name'        => 'adress',
 				'max'         => 255,
                 'required'    => true,
@@ -79,14 +74,16 @@ class MasterBase
                 'title'       => trans('salador/uslugi::uslugi.Master.email'),
                 'placeholder' => trans('salador/uslugi::uslugi.Master.email'),
             ],
-			
+			/*
 			'location'    => [
                 'tag'         	=> 'place',
                 'type'        	=> 'text',
                 'name'        	=> 'location',
+                //'prefix'       	=> 'locadress',
                 'title'       	=> trans('salador/uslugi::uslugi.Master.location'),
                 'placeholder' 	=> trans('salador/uslugi::uslugi.Master.location'),
             ],
+			*/
         ];
     }
 

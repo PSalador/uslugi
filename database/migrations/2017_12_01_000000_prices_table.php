@@ -11,14 +11,14 @@ class PricesTable extends Migration
     public function up()
     {
 		//Таблица цены мастер на услугу
-		
+		Schema::dropIfExists('Prices');
         Schema::create('Prices', function (Blueprint $table) {
-			$table->integer('user_id')->unsigned();
+			$table->increments('id');
+			$table->integer('master_id')->unsigned();
 			$table->integer('services_id')->unsigned();
 			$table->float('volume', 8, 4)->unsigned();
 			$table->decimal('price', 8, 2)->unsigned();
             $table->timestamps();
-			$table->primary(['user_id', 'services_id','volume']);
         });
     }
     /**

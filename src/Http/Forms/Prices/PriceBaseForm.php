@@ -65,8 +65,13 @@ class PriceBaseForm extends Form
      */
     public function get(Price $price = null) : View
     {
+		$price=$price ?: new $this->model();
+		//$master::attributes['adress']=json_decode($master->attributes['adress']);
+		$price->selectMasters()->selectServices();
+		//dd($price);
+		
         return view('salador/uslugi::prices.info', [
-            'service'     => $price ?: new $this->model(),
+            'service'     => $price,
             'language' => App::getLocale(),
             'locales'  => config('platform.locales'),
             'fields'   => $this->behavior->fields(),

@@ -10,10 +10,10 @@
             @endif
             class="form-control {{$class or ''}}" id="field-{{$slug}}">
 			
-		@if(!isset($values) || is_null($values))
+		@if(!isset($value) || is_null($value))
 				<option value="0">{{$novalue}}</option>
 		@else	
-          @foreach($values as $key => $val)
+          @foreach($value as $key => $val)
 				<option value="{{$key}}">{{$val}}</option>
            @endforeach
 		@endif			

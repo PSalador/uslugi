@@ -23,9 +23,9 @@
         <div class="bg-white-only bg-auto no-border-xs">
 
             @if($services->count() > 0)
-                <div class="panel">
+                <div class="card">
 
-                    <div class="panel-body row">
+                    <div class="card-body row">
 
                         <div class="table-responsive">
                             <table class="table table-striped">
@@ -39,13 +39,13 @@
                                 </thead>
                                 <tbody>
                                 @foreach ($services as $service)
-                                    <tr>
+								     <tr>
                                         <td class="text-center">
-                                            <a href="{{ route('dashboard.uslugi.prices.edit',$service->id) }}"><i
+                                            <a href="{{ route('dashboard.uslugi.prices.edit',$service->master_id) }}"><i
                                                         class="fa fa-bars"></i></a>
                                         </td>
-                                        <td>{{ $service->name }}</td>
-                                        <td>{{ $service->measure }}</td>
+                                        <td>{{ $service->Master->name }}</td>
+                                        <td>{{ $service->Service->name }}</td>
 
                                         <td>{{ $service->updated_at or $service->created_at }}</td>
                                     </tr>
@@ -57,7 +57,7 @@
 
                     </div>
 
-                    <footer class="panel-footer">
+                    <footer class="card-footer">
                         <div class="row">
                             <div class="col-sm-8">
                                 <small class="text-muted inline m-t-sm m-b-sm">{{trans('dashboard::common.show')}} {{$services->total()}}
