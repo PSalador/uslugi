@@ -2,13 +2,15 @@
 namespace Salador\Uslugi\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Orchid\Platform\Core\Models\Taxonomy;
 use Orchid\Platform\Facades\Alert;
 use Orchid\Platform\Http\Controllers\Controller;
-use Salador\Uslugi\Http\Forms\Services\ServicesFormGroup;
-use Salador\Uslugi\Models\Service;
 
-class ServiceController extends Controller
+use Salador\Uslugi\Http\Forms\Prices\PricesFormGroup;
+use Salador\Uslugi\Models\Price;
+
+class PriceController extends Controller
 {
     /**
      * @var
@@ -20,10 +22,10 @@ class ServiceController extends Controller
      * RoleController constructor.
      */
     //public function __construct()
-    public function __construct(ServicesFormGroup $form)
+    public function __construct(PricesFormGroup $form)
     {
         //$this->form = new $this->form();
-		$this->checkPermission('dashboard.uslugi.services');
+		$this->checkPermission('dashboard.uslugi.prices');
 		$this->form = $form;
 
     }
@@ -33,7 +35,6 @@ class ServiceController extends Controller
      */
     public function index()
     {
-		//dd('Hello');
         return $this->form->grid();
     }
 
@@ -43,7 +44,7 @@ class ServiceController extends Controller
     public function create()
     {
         return $this->form
-            ->route('dashboard.uslugi.services.update')
+            ->route('dashboard.uslugi.prices.update')
             ->method('POST')
             ->render();
     }
@@ -53,13 +54,13 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request, Service $service=null)
+    public function store(Request $request, Price $price=null)
     {
-        $this->form->save($request, $service);
+        $this->form->save($request, $price);
 
 		Alert::success(trans('dashboard::common.alert.success'));
 
-		return redirect()->route('dashboard.uslugi.services');
+		return redirect()->route('dashboard.uslugi.prices');
 
         //return redirect()->route('dashboard.uslugi.services.edit', $request->get('slug'));
     }
@@ -70,9 +71,9 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, Price $price)
     {
-        $this->form->save($request, $service);
+        $this->form->save($request, $price);
 		
 		Alert::success(trans('dashboard::common.alert.success'));
 
@@ -85,11 +86,11 @@ class ServiceController extends Controller
      *
      * @return mixed
      */
-    public function edit(Service $service)
+    public function edit(Price $price)
     {
 		//dd($service);
 		//return $this->form->route('dashboard.uslugi.services.update')->slug($service->slug)->method('PUT')->render($service);
-		return $this->form->route('dashboard.uslugi.services.update')->slug($service->id)->method('PUT')->render($service);	
+		return $this->form->route('dashboard.uslugi.prices.update')->slug($price->id)->method('PUT')->render($price);	
     }
 
     /**
@@ -97,10 +98,10 @@ class ServiceController extends Controller
      *
      * @return mixed
      */
-    public function destroy(Service $service)
+    public function destroy(Price $price)
     {
-        $this->form->remove($service);
+        $this->form->remove($price);
 
-        return redirect()->route('dashboard.uslugi.services');
+        return redirect()->route('dashboard.uslugi.prices');
     }
 }

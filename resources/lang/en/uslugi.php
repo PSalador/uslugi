@@ -5,6 +5,28 @@ return [
 	'Service'		=> 'Service',
 	'Services'		=> 'Services',
 	'measure'		=> 'Measure',
+	'Master'		=> [
+        'Title'           	=> 'Master',
+        'Titles'           	=> 'Masters',
+        'description'       => 'Master description',
+        'user'       		=> 'User',
+        'adress'       		=> 'Adress',
+        'phone'       		=> 'Phone',
+        'email'       		=> 'Email',
+        'location'       	=> 'Location',
+    ],
+	'Price'		=> [
+        'Title'           	=> 'Price',
+        'Titles'           	=> 'Prices',
+        'description'       => 'Price description',
+		'volume'			=> 'Volume',
+		'price'				=> 'Price',
+    ],
+	'Select'		=> [
+        'novalue'           => 'No Value',
+    ],
+	
+	
     'disabled'    	=> 'The operating system or PHP settings are not supported by the monitor',
     'Hardware' => [
         'Title'             => 'Hardware',

@@ -22,14 +22,35 @@ class UslugiServiceProvider extends ServiceProvider
 		$this->mergeConfigFrom(__DIR__.'/../../config/uslugi.php', 'uslugi');   //Конфигурация по умолчанию - не пойму что это?
 		
         $dashboard = $this->app->make(Dashboard::class);
+		
+		//Регистрация провайдера слушателя
 		$this->app->register(EventServiceProvider::class);
 		
+		// Регистрируем доступы к услугам. Их нужно бдет включить в ролях полязователя
         $dashboard->permission->registerPermissions([      
-            'Systems' => [[
-                'slug'        => 'dashboard.systems.uslugi',
+            'Main' => [[
+                'slug'        => 'dashboard.uslugi',
                 'description' => trans('salador/uslugi::uslugi.Uslugi'),	//Перевод в каталоге расположения языкового файла::Название файла.Переменная
             ]],
-        ]);   // Регистрируем доступ к услугам.
+			'Uslugi' => [
+                [
+                    'slug'        => 'dashboard.uslugi.services',
+                    'description' => trans('salador/uslugi::uslugi.Uslugi'), 
+				],
+				[
+                    'slug'        => 'dashboard.uslugi.masters',
+                    'description' => trans('salador/uslugi::uslugi.Master.Title'), 
+				],
+				[
+                    'slug'        => 'dashboard.uslugi.prices',
+                    'description' => trans('salador/uslugi::uslugi.Price.Title'), 
+				],
+			],
+        ]);   
+		
+		
+		//Добавление пунктов меню dasboard.
+		
         View::composer('dashboard::layouts.dashboard', function () use ($dashboard) {
 			$dashboard->menu->add('Main', [
 				'slug'       => 'Uslugi',
@@ -39,7 +60,7 @@ class UslugiServiceProvider extends ServiceProvider
 				'childs'     => true,
 				'main'       => true,
 				'active'     => 'dashboard.uslugi.*',			
-				'permission' => 'dashboard.systems.uslugi',
+				'permission' => 'dashboard.uslugi.services',
 				'sort'       => 5,
 			]);
             $dashboard->menu->add('Uslugi', [
@@ -49,8 +70,26 @@ class UslugiServiceProvider extends ServiceProvider
                 'label'      => trans('salador/uslugi::uslugi.Uslugi'),
 				'groupname'  => trans('dashboard::menu.general settings'),
 				'divider'    => false,
-                'permission' => 'dashboard.systems.uslugi',
+                'permission' => 'dashboard.uslugi.services',
                 'sort'       => 11,
+            ]);
+			$dashboard->menu->add('Uslugi', [
+                'slug'       => 'masters',
+                'icon'       => 'icon-user',
+                'route'      => route('dashboard.uslugi.masters'),
+                'label'      => trans('salador/uslugi::uslugi.Master.Titles'),
+				'divider'    => false,
+                'permission' => 'dashboard.uslugi.masters',
+                'sort'       => 12,
+            ]);
+			$dashboard->menu->add('Uslugi', [
+                'slug'       => 'prices',
+                'icon'       => 'fa fa-money',
+                'route'      => route('dashboard.uslugi.prices'),
+                'label'      => trans('salador/uslugi::uslugi.Price.Titles'),
+				'divider'    => false,
+                'permission' => 'dashboard.uslugi.prices',
+                'sort'       => 13,
             ]);
         });
     }

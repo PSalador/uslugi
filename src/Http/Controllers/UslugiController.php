@@ -9,7 +9,7 @@ class UslugiController extends Controller
     public function __construct()
     {
 		//dd (config('uslugi.middleware.private'));  // dd() функция просмотра отладки как var_dump или print_r
-        $this->checkPermission('dashboard.systems.uslugi');
+        $this->checkPermission('dashboard.uslugi.services');
     }
     /**
      * @return \Illuminate\Http\JsonResponse

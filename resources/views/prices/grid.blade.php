@@ -9,7 +9,7 @@
 @section('navbar')
     <div class="text-right">
         <div class="btn-group" role="group">
-            <a href="{{ route('dashboard.uslugi.services.create')}}" class="btn btn-link"><i
+            <a href="{{ route('dashboard.uslugi.prices.create')}}" class="btn btn-link"><i
                         class="icon-plus fa fa-2x"></i></a>
         </div>
     </div>
@@ -39,13 +39,13 @@
                                 </thead>
                                 <tbody>
                                 @foreach ($services as $service)
-                                    <tr>
+								     <tr>
                                         <td class="text-center">
-                                            <a href="{{ route('dashboard.uslugi.services.edit',$service->id) }}"><i
+                                            <a href="{{ route('dashboard.uslugi.prices.edit',$service->master_id) }}"><i
                                                         class="fa fa-bars"></i></a>
                                         </td>
-                                        <td>{{ $service->name }}</td>
-                                        <td>{{ $service->measure }}</td>
+                                        <td>{{ $service->Master->name }}</td>
+                                        <td>{{ $service->Service->name }}</td>
 
                                         <td>{{ $service->updated_at or $service->created_at }}</td>
                                     </tr>
@@ -76,7 +76,7 @@
                     <div>
                         <h3 class="font-thin">{{trans('dashboard::systems/users.not_found')}}</h3>
 
-                        <a href="{{ route('dashboard.uslugi.services.create')}}" class="btn btn-link">
+                        <a href="{{ route('dashboard.uslugi.prices.create')}}" class="btn btn-link">
                             {{trans('dashboard::systems/users.create')}}
                         </a>
                     </div>

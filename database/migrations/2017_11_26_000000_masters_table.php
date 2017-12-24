@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-class CallRequestTable extends Migration
+class MastersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -10,13 +10,15 @@ class CallRequestTable extends Migration
      */
     public function up()
     {
-        Schema::create('masters', function (Blueprint $table) {
+		//Таблица мастаеров, каждый пользователь может добавить несколько мастеров.
+		Schema::dropIfExists('Masters');
+        Schema::create('Masters', function (Blueprint $table) {
             $table->increments('id');
+			$table->integer('user_id')->unsigned();
             $table->string('name');
-            $table->string('phone');
-            $table->string('time');
-            $table->text('message');
-            $table->string('remote_ip',16);
+            $table->json('adress');
+			$table->string('phone');
+			$table->string('email');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CallRequestTable extends Migration
      */
     public function down()
     {
-	    Schema::drop('call_request');
+	    Schema::dropIfExists('Masters');
     }
 }
