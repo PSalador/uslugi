@@ -5,7 +5,7 @@ namespace Salador\Uslugi\Models;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Platform\Core\Models\User;
 
-use Salador\Uslugi\Models\Price as Price;
+//use Salador\Uslugi\Models\Price as Price;
 
 class Master extends Model
 {
@@ -23,6 +23,25 @@ class Master extends Model
     ];							// Поля массово изменяемые
 	
 	
+	
+	/**
+     * @param $key
+     *
+     * @return mixed
+     */
+    public function getContent($key){
+		//dump($this->getAttribute($key));
+        return $this->getAttribute($key);
+    }
+	
+	 /**
+	 *  Преобразует данные к определенному формату
+     * @var array
+     */
+    protected $casts = [
+        'adress' => 'array',
+    ];
+	
 	/*
 	function __construct($attributes = array())
     {
@@ -39,7 +58,17 @@ class Master extends Model
 	
 	public function prices()
     {
-        return $this->hasMany(Price);
+        return $this->hasMany(Price::class);
+    }
+	
+	public function balance()
+    {
+        return $this->hasMany(Balance::class);
+    }
+	
+	public function leads()
+    {
+        return $this->hasMany(Lead::class);
     }
 	
 	public function setAdressJson()

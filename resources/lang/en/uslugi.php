@@ -5,6 +5,10 @@ return [
 	'Service'		=> 'Service',
 	'Services'		=> 'Services',
 	'measure'		=> 'Measure',
+	
+	'MasterMenuGroup'	=> 'Master group',
+	'AdminMenuGroup'	=> 'Admin group',
+	
 	'Master'		=> [
         'Title'           	=> 'Master',
         'Titles'           	=> 'Masters',
@@ -24,6 +28,12 @@ return [
     ],
 	'Select'		=> [
         'novalue'           => 'No Value',
+    ],
+	'Balance'		=> [
+        'Title'           => 'Balance',
+    ],
+	'Transactions'		=> [
+        'Title'           => 'Transaction',
     ],
 	
 	

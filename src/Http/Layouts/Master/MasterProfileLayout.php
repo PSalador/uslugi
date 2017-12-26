@@ -1,37 +1,21 @@
 <?php
 
-namespace Salador\Uslugi\Behaviors;
+namespace Salador\Uslugi\Http\Layouts\Master;
 
+use Orchid\Platform\Layouts\Rows;
 
-
-class MasterBase
+class MasterProfileLayout extends Rows
 {
-
-    /**
-     * Rules Validation.
-     *
-     * @return array
-     */
-    public function rules() : array
-    {
-        return [];
-    }
-
     /**
      * @return array
      */
     public function fields() : array
     {
-
-			
-		//dd($selusers);
-		
         return [
-		
-		    'user'     => [
+ 		    'user'     => [
                 'tag'         => 'select',
                 'type'        => 'text',
-                'name'        => 'user_id',
+                'name'        => 'master.user_id',
                 'max'         => 255,
                 'required'    => true,
                 'title'       => trans('salador/uslugi::uslugi.Master.user'),
@@ -42,7 +26,7 @@ class MasterBase
             'name'     => [
                 'tag'         => 'input',
                 'type'        => 'text',
-                'name'        => 'name',
+                'name'        => 'master.name',
                 'max'         => 255,
                 'required'    => true,
                 'title'       => trans('salador/uslugi::uslugi.Master.Title'),
@@ -51,7 +35,7 @@ class MasterBase
             'adress'    => [
                 'tag'         => 'place',
                 'type'        => 'array',
-                'name'        => 'adress',
+                'name'        => 'master.adress',
 				'max'         => 255,
                 'required'    => true,
                 'title'       => trans('salador/uslugi::uslugi.Master.adress'),
@@ -60,7 +44,7 @@ class MasterBase
 			'phone'    => [
                 'tag'         => 'input',
                 'type'        => 'text',
-                'name'        => 'phone',
+                'name'        => 'master.phone',
 				'max'         => 255,
                 'required'    => true,
                 'title'       => trans('salador/uslugi::uslugi.Master.phone'),
@@ -69,29 +53,13 @@ class MasterBase
 			'email'    => [
                 'tag'         => 'input',
                 'type'        => 'email',
-                'name'        => 'email',
+                'name'        => 'master.email',
                 'required'    => true,
                 'title'       => trans('salador/uslugi::uslugi.Master.email'),
                 'placeholder' => trans('salador/uslugi::uslugi.Master.email'),
             ],
-			/*
-			'location'    => [
-                'tag'         	=> 'place',
-                'type'        	=> 'text',
-                'name'        	=> 'location',
-                //'prefix'       	=> 'locadress',
-                'title'       	=> trans('salador/uslugi::uslugi.Master.location'),
-                'placeholder' 	=> trans('salador/uslugi::uslugi.Master.location'),
-            ],
-			*/
         ];
     }
 
-    /**
-     * Grid View for post type.
-     */
-    public function grid() : array
-    {
-        return [];
-    }
 }
+

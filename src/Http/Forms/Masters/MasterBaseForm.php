@@ -95,7 +95,7 @@ class MasterBaseForm extends Form
 		//$attributes['location']= \DB::raw("GeomFromText('POINT(".$attributes['adress']['lat']." ".$attributes['adress']['lng'].")')");//"POINT(".$attributes['adress']['lat']." ".$attributes['adress']['lng'].")";
 		//$attributes['adress']=$attributes['adress']['name'];
 	
-		$attributes['adress']=json_encode($attributes['adress']);
+		//$attributes['adress']=json_encode($attributes['adress']);
 	
 		//dd($attributes);
         if (is_null($master)) {

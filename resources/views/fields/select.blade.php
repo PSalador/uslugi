@@ -14,7 +14,17 @@
 				<option value="0">{{$novalue}}</option>
 		@else	
           @foreach($value as $key => $val)
+			@if(isset($value['default']))
+			  @if($key!='default')
+				<option 
+					@if($value['default']==$key)
+						selected
+					@endif
+				value="{{$key}}">{{$val}}</option>
+			  @endif
+			@else
 				<option value="{{$key}}">{{$val}}</option>
+			@endif
            @endforeach
 		@endif			
     </select>

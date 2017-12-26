@@ -56,7 +56,7 @@ git config user.email ivanov@example.com
 ```
 3) Подключил с помощью команды `composer require salador/uslugi:dev-master --prefer-source` правда в vendor он установил только ссылку.
 4) Опубликовал провайдера с помощью команды `php artisan vendor:publish --provider="Salador\Uslugi\Providers\UslugiServiceProvider"`
-5) Установить таблицы данных `php artisan migrate`
+5) Установить таблицы данных `php artisan migrate`, для того чтобы установить таблицы из одного каталога php artisan migrate --path=package/uslugi/database/migrations/
 6) Зашел в админку, добавил разрешение - отобразилась иконка "Услуг"
 
 ## Команды Laravel

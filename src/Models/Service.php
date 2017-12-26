@@ -21,7 +21,7 @@ class Service extends Model
 	
 	public function prices()
     {
-        return $this->hasMany(Price);
+        return $this->hasMany(Price,'services_id');
     }
 	
 	public function GetAll()
