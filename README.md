@@ -29,7 +29,8 @@ git config user.email ivanov@example.com
 2) Командой `git add %file_path%` отмечаем все измененные и добавленные файлы или папки, для добавления всех папок `git add .`
 3) Командой `git commit` добавляем описание к изменению - это изменение добавится ко всем измененным файлам (Выход - нажимаем esc потом :q или :wq и Enter) также можно использовать команду `git commit -m "%commit_message%"`
 4) Можно посмотреть историю изменений `git log`, но не нужно
-5) Загрузка в репозиторий на github `git push origin master` далее вводим логин пароль.
+5) Загрузка в репозиторий на github `git push origin master` далее вводим логин пароль. Загрузка в ветку `git push origin master:userscreen`
+
 
 Загрузка на fork  репозитория
 1) в каталоге репозитория выполнить `git remote add salador https://github.com/psalador/platform.git`
