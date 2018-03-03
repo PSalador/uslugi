@@ -38,6 +38,10 @@ git config user.email ivanov@example.com
 2) смотрим информацию `git remote show salador`
 3) загружаем `git push salador master` [доп информация](https://git-scm.com/book/ru/v1/%D0%92%D0%B5%D1%82%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-Git-%D0%9F%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D1%89%D0%B5%D0%BD%D0%B8%D0%B5)
 
+Переписать с github
+1) git fetch --all
+2) git reset --hard origin/<branch_name>
+[Отсюда](http://qaru.site/questions/92/how-do-i-force-git-pull-to-overwrite-local-files)
 
 ## Создание пакета в laravel
 Используется статья [Разработка пакета для Laravel 5. Пошаговая инструкция с картинками.](https://laravel-news.ru/blog/tutorials/develop-laravel5-package-step-by-step)
