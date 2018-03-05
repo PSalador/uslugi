@@ -22,7 +22,8 @@ git config user.email ivanov@example.com
 `git status`
 
 Обновление репозитория на сервере с github
-`git pull`
+`git pull` если с ветки `git pull origin develop`
+
 
 Загрузка с сервера в github
 1) Изменяем файлы, только после того как все норм и работает переходим к следующему шагу - не нужно после каждого сохранения заливать в github
