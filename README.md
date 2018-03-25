@@ -44,6 +44,11 @@ git config user.email ivanov@example.com
 2) git reset --hard origin/<branch_name>
 [Отсюда](http://qaru.site/questions/92/how-do-i-force-git-pull-to-overwrite-local-files)
 
+Удалить последний коммит
+git reset HEAD^ --hard
+переписать удаленный реп (-force) `git push origin master:userscreen -f`
+
+
 ## Создание пакета в laravel
 Используется статья [Разработка пакета для Laravel 5. Пошаговая инструкция с картинками.](https://laravel-news.ru/blog/tutorials/develop-laravel5-package-step-by-step)
 Также использовал расширение [Monitor](https://github.com/TheOrchid/Monitor) для Orchid CMS/
