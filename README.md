@@ -10,6 +10,7 @@ Add DB masters and services for Orchid CMS
 В основном отсюда [Пошаговая инструкция по работе с git и github для студентов](https://github.com/andreiled/mipt-cs-4sem/wiki/%D0%9F%D0%BE%D1%88%D0%B0%D0%B3%D0%BE%D0%B2%D0%B0%D1%8F-%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D1%8F-%D0%BF%D0%BE-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5-%D1%81-git-%D0%B8-github-%D0%B4%D0%BB%D1%8F-%D1%81%D1%82%D1%83%D0%B4%D0%B5%D0%BD%D1%82%D0%BE%D0%B2)
 Скопировать репозиторий в каталог. Запускать команду в нужном каталоге, в нем он создаст папку uslugi и там будут все файлы
 `git clone https://github.com/PSalador/uslugi.git`
+Клонирование ветки `git clone -b develop https://github.com/orchidsoftware/platform.git`
 
 Просмотреть конфигурацию - эти команды делать 1 раз
 `git config --list`
@@ -30,7 +31,7 @@ git config user.email ivanov@example.com
 2) Командой `git add %file_path%` отмечаем все измененные и добавленные файлы или папки, для добавления всех папок `git add .`
 3) Командой `git commit` добавляем описание к изменению - это изменение добавится ко всем измененным файлам (Выход - нажимаем esc потом :q или :wq и Enter) также можно использовать команду `git commit -m "%commit_message%"`
 4) Можно посмотреть историю изменений `git log`, `git show` и `git log -p.`.
-5) Загрузка в репозиторий на github `git push origin master` далее вводим логин пароль. Загрузка в ветку `git push origin master:develop`
+5) Загрузка в репозиторий на github `git push origin master` далее вводим логин пароль. Загрузка в ветку `git push origin master:develop`, если клонировали с ветки то `git push origin develop`
 
 
 Загрузка на fork  репозитория
