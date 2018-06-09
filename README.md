@@ -19,6 +19,9 @@ Add DB masters and services for Orchid CMS
 git config user.name ivan.ivanov
 git config user.email ivanov@example.com
 ```
+Клонирование ветки 
+`git checkout -b new_branch`
+
 Узнать в правильном ли каталоге, и какие изменение есть
 `git status`
 
