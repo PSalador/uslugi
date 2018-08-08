@@ -103,5 +103,113 @@ class XSettingProvider extends ServiceProvider
     }
 }
 ```
+5. Также нужно создать модель которая описывает связи с базой данных, создадим файл src/Models/XSetting.php
+```
+namespace Orchids\XSetting\Models;
 
+use Illuminate\Support\Facades\Cache;
+use Orchid\Setting\Setting;
+use Orchid\Platform\Traits\MultiLanguage;
+
+class XSetting extends Setting
+{
+	use MultiLanguage;
+
+	protected $fillable = ['key','value','options' ];	
+
+	protected $casts = [
+		'key' =>'string',
+		'value' => 'array',
+		'options' => 'array',
+	];	
+}
+```
+
+Теперь в меню добавится пункт настроек который будет обрабатываться роутингом и запускать нужный экран.
+Осталось добавить экраны (Screens) и макеты (Layouts)
+6. Добавим экран списка всех настроек, для этого создадим файл src/Http/Screens/XSettingList.php 
+```
+namespace Orchids\XSetting\Http\Screens;
+
+use Orchid\Screen\Screen;
+use Orchid\Screen\Layouts;
+use Orchid\Screen\Link;
+
+use Orchids\XSetting\Models\XSetting;
+use Orchids\XSetting\Http\Layouts\XSettingListLayout;
+
+class XSettingList extends Screen
+{
+    public $name = 'Setting List';
+    public $description = 'List all settings';
+
+    public function query() : array
+    {
+        return [
+            'settings' => XSetting::paginate(30)
+        ];
+    }
+
+    public function commandBar() : array
+    {
+        return [
+            Link::name('Create a new setting')->method('create'),
+        ];
+    }
+
+    public function layout() : array
+    {
+        return [
+            XSettingListLayout::class,
+        ];
+    }
+
+     public function create()
+    {
+        return redirect()->route('platform.xsetting.create');
+    }
+}
+```
+
+7. Добавим макет вывода списка всех настроек, для этого создадим файл src/Http/Layouts/XSettingListLayout.php 
+
+```
+namespace Orchids\XSetting\Http\Layouts;
+
+use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\Fields\TD;
+
+class XSettingListLayout extends Table
+{
+    public $data = 'settings';
+    public function fields() : array
+    {
+      return  [
+			TD::set('key','Key')
+                ->column('key')
+                ->setRender(function ($shortvar) {
+                return '<a href="' . route('platform.blogcms.shortvar.edit',
+                        $shortvar->key) . '">' . $shortvar->key . '</a>';
+            }),
+			TD::set('options.title', 'Name')
+				->setRender(function ($shortvar) {
+                return $shortvar->options['title'];
+				}),
+            TD::set('value','Value')
+                ->setRender(function ($shortvar) {
+                     if (is_array($shortvar->value)) {
+                        return substr(htmlspecialchars(json_encode($shortvar->value)), 0, 50);
+                     }
+                     return substr(htmlspecialchars($shortvar->value), 0, 50);
+				}),
+        ];
+    }
+}
+```
+
+8. Создадим экран создания и редактирования настройки, для этого создадим файл src/Http/Screens/XSettingEdit.php
+
+```
+
+```
  
