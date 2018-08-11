@@ -160,9 +160,9 @@ public function up()
 }
 public function down()
 {
-		Schema::dropIfExists('settings', function (Blueprint $table) {
-				$table->dropColumn('options');
-		});
+	Schema::dropIfExists('settings', function (Blueprint $table) {
+		$table->dropColumn('options');
+	});
 }
 ```
 
@@ -250,22 +250,22 @@ class XSettingListLayout extends Table
     public function fields() : array
     {
       return  [
-			TD::set('key','Key')
-                ->setRender(function ($shortvar) {
-                return '<a href="' . route('platform.blogcms.shortvar.edit',
-                        $shortvar->key) . '">' . $shortvar->key . '</a>';
-            }),
-			TD::set('options.title', 'Name')
-				->setRender(function ($shortvar) {
-                return $shortvar->options['title'];
-				}),
-            TD::set('value','Value')
-                ->setRender(function ($shortvar) {
-                     if (is_array($shortvar->value)) {
-                        return substr(htmlspecialchars(json_encode($shortvar->value)), 0, 50);
-                     }
-                     return substr(htmlspecialchars($shortvar->value), 0, 50);
-				}),
+		TD::set('key','Key')
+			->setRender(function ($shortvar) {
+			return '<a href="' . route('platform.blogcms.shortvar.edit',
+					$shortvar->key) . '">' . $shortvar->key . '</a>';
+		}),
+		TD::set('options.title', 'Name')
+			->setRender(function ($shortvar) {
+			return $shortvar->options['title'];
+			}),
+		TD::set('value','Value')
+			->setRender(function ($shortvar) {
+				 if (is_array($shortvar->value)) {
+					return substr(htmlspecialchars(json_encode($shortvar->value)), 0, 50);
+				 }
+				 return substr(htmlspecialchars($shortvar->value), 0, 50);
+			}),
         ];
     }
 }
@@ -303,13 +303,11 @@ class XSettingEdit extends Screen
     public function layout() : array
     {
         return [
-		
 		    Layouts::columns([
                 'EditSetting' => [
                     XSettingEditLayout::class   //Макет который обработает даннные
                 ],
             ]),
-		
         ];
     }
 
