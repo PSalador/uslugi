@@ -303,11 +303,11 @@ class XSettingEdit extends Screen
     public function layout() : array
     {
         return [
-		    Layouts::columns([
-                'EditSetting' => [
-                    XSettingEditLayout::class   //Макет который обработает даннные
-                ],
-            ]),
+			Layouts::columns([
+				'EditSetting' => [
+					XSettingEditLayout::class   //Макет который обработает даннные
+				],
+			]),
         ];
     }
 
@@ -324,21 +324,21 @@ class XSettingEdit extends Screen
 
 		$req = $this->request->get('xsetting');   // Заполненные данные 'xsetting' "вернуться" из макета
 
-        if ($req['options']['type']=='code') {
-            $req['value']=json_decode($req['value'], true);
-        }
+		if ($req['options']['type']=='code') {
+			$req['value']=json_decode($req['value'], true);
+		}
 
 		$xsetting->updateOrCreate(['key' => $req['key']], $req );
 
-        Alert::info('Setting was saved');
-        return redirect()->route('platform.xsetting.list');
+		Alert::info('Setting was saved');
+		return redirect()->route('platform.xsetting.list');
     }
 	 
     public function remove($request, XSetting $xsetting)  // Функция удаления настройки
     {
 		$xsetting->where('id',$request)->delete();
-        Alert::info('Setting was removed');
-        return redirect()->route('platform.xsetting.list');
+		Alert::info('Setting was removed');
+		return redirect()->route('platform.xsetting.list');
     }
 }
 ```
