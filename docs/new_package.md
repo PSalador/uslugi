@@ -250,4 +250,6 @@ class XSettingListLayout extends Table
   "prefer-stable": true
 }
 ```
+10. Запускаем в консоли `composer require "orchids/xsetting"`
+11. Применим миграции `php artisan migrate`
  
