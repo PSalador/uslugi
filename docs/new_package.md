@@ -1,10 +1,10 @@
-### Как сделать пакет (плагин) в Orchid шаг за шагом. 
+## Как сделать пакет (плагин) в Orchid шаг за шагом. 
  
 В данном уроке научимся создавать плагины для Orchid, отличае плагинов от проекта, в том что его можно легко подключать в другие проекты.
 
 Наш плагин будет отображать [настройки](https://orchid.software/ru/docs/settings) Orchid, а также создаст возможность их редактировать.
 
-#### Директория и подключение плагина.
+### Директория и подключение плагина.
 Для начала нужно создать директорию где будут содержаться наши проекты.
 
 1. В корневой директории проекта создаем директорию package.  
@@ -24,7 +24,7 @@
 Выполнив эти действия также можно создать плагин не только под Orchid но и для любого проекта под Laravel.
 Конечно если вы подключите свой плагин к packagist.org то эти действия не понадобятся.
 
-#### Создание плагина.
+### Создание плагина.
 Создадим структуру пакета 
 
 ```
@@ -42,7 +42,7 @@ Composer.json
 Приступаем к разработке расширения.
 
 
-1. Сначала создадим файл composer.json для Композера 
+#### 1. Сначала создадим файл composer.json для Композера 
 ```
 {
   "name": "orchids/xsetting",
@@ -74,7 +74,7 @@ Composer.json
 `"psr-4": {"Orchids\\XSetting\\": "src/"}` - все подключаемые классы у которых путь начинается с `Orchids\XSetting` будут искатся в этом пакете
 `"laravel": {"providers": [ "Orchids\\XSetting\\Providers\\XSettingProvider" ]} ` - После установки запустит провайдер по пути `src/Providers/XSettingProvider.php`
 
-2. Теперь создадим класс провайдера который добавит маршрутизацию, возможность давать пользователям доступ к данному пакету, и добавит пункт нашего плагина в меню. 
+#### 2. Теперь создадим класс провайдера который добавит маршрутизацию, возможность давать пользователям доступ к данному пакету, и добавит пункт нашего плагина в меню. 
 Создадим файл `src/Providers/XSettingProvider.php`
 ```
 namespace Orchids\XSetting\Providers;
@@ -105,7 +105,7 @@ class XSettingProvider extends ServiceProvider
 }
 ```
 
-3. Для начала создадим файл роутинга, который будет определять какой экран отвечает за определенный маршрут.
+#### 3. Для начала создадим файл роутинга, который будет определять какой экран отвечает за определенный маршрут.
 Создадим файл routes/route.php
 
 ```
@@ -121,7 +121,7 @@ Route::domain((string) config('platform.domain'))     //Загружает из 
 ```
 Теперь при генерации пути `route('platform.xsetting.list')` в браузере будет сгенерирован примерно такой адрес  `http://yousite.name/dashboard/systems/xsetting`, а при переходе на него роутинг запустить файл `src\Http\Screens\XSettingList.php`
 
-4. Добавим в меню пункт настроек пункт с генерацией пути к `route('platform.xsetting.list')` (например в меню "Система"), для этого создадим файл ` src/Providers/MenuComposer.php `
+#### 4. Добавим в меню пункт настроек пункт с генерацией пути к `route('platform.xsetting.list')` (например в меню "Система"), для этого создадим файл ` src/Providers/MenuComposer.php `
 ```
 namespace Orchids\XSetting\Providers;
 
@@ -149,7 +149,7 @@ class MenuComposer
 ```
 
 
-5. Теперь нужно добавить в базу данных столбец `options` содержащий дополнительные параметры данного ключа, для этого создаим файл миграции баз даныых 
+#### 5. Теперь нужно добавить в базу данных столбец `options` содержащий дополнительные параметры данного ключа, для этого создаим файл миграции баз даныых 
 `database/migrations/2018_08_07_000000_create_options_for_settings_table.php` содержащий 
 ```
 public function up()
@@ -167,7 +167,7 @@ public function down()
 ```
 
 
-6. Также нужно создать модель которая описывает связи с базой данных, создадим файл src/Models/XSetting.php
+#### 6. Также нужно создать модель которая описывает связи с базой данных, создадим файл src/Models/XSetting.php
 ```
 namespace Orchids\XSetting\Models;
 
@@ -189,7 +189,7 @@ class XSetting extends Setting
 }
 ```
 
-7. Теперь осталось добавить экраны [Screens](https://orchid.software/ru/docs/screens) и макеты [Layouts](https://orchid.software/ru/docs/layouts)
+#### 7. Теперь осталось добавить экраны [Screens](https://orchid.software/ru/docs/screens) и макеты [Layouts](https://orchid.software/ru/docs/layouts)
 Добавим экран списка всех настроек, для этого создадим файл src/Http/Screens/XSettingList.php 
 ```
 namespace Orchids\XSetting\Http\Screens;
@@ -236,7 +236,7 @@ class XSettingList extends Screen
 ```
 Подробнее про создание экранов [ссылка](https://orchid.software/ru/docs/screens)
 
-8. Добавим макет вывода списка всех настроек, для этого создадим файл src/Http/Layouts/XSettingListLayout.php 
+#### 8. Добавим макет вывода списка всех настроек, для этого создадим файл src/Http/Layouts/XSettingListLayout.php 
 
 ```
 namespace Orchids\XSetting\Http\Layouts;
@@ -272,7 +272,7 @@ class XSettingListLayout extends Table
 ```
 Подробнее про создание макетов [ссылка](https://orchid.software/ru/docs/layouts)
 
-9. Добавим экран создания и редактирования настройки, для этого создадим файл src/Http/Screens/XSettingEdit.php
+#### 9. Добавим экран создания и редактирования настройки, для этого создадим файл src/Http/Screens/XSettingEdit.php
 ```
 <?php
 namespace Orchids\XSetting\Http\Screens;
@@ -344,7 +344,7 @@ class XSettingEdit extends Screen
     }
 }
 ```
-10. Осталось добавить макет редактирования настроек, создадим ` src/Http/Layouts/XSettingEditLayout.php `
+#### 10. Осталось добавить макет редактирования настроек, создадим ` src/Http/Layouts/XSettingEditLayout.php `
 ```
 namespace Orchids\XSetting\Http\Layouts;
 
