@@ -14,17 +14,22 @@ use Salador\Uslugi\Models\Service;
 use Salador\Uslugi\Models\TypeTran;
 use Salador\Uslugi\Models\Balance;
 use Salador\Uslugi\Models\Lead;
+use Salador\Uslugi\Models\AdvType;
+use Salador\Uslugi\Models\AdvPrice;
 
 use Salador\Uslugi\Http\Requests\PriceRequest;
 use Salador\Uslugi\Http\Requests\BalanceRequest;
 use Salador\Uslugi\Http\Requests\LeadRequest;
+use Salador\Uslugi\Http\Requests\AdvPriceRequest;
 use Salador\Uslugi\Http\Layouts\Master\MasterProfileLayout;
 use Salador\Uslugi\Http\Layouts\Master\MasterPricesLayout;
 use Salador\Uslugi\Http\Layouts\Master\MasterBalanceLayout;
 use Salador\Uslugi\Http\Layouts\Master\MasterLeadLayout;
+use Salador\Uslugi\Http\Layouts\Master\MasterAdvPriceLayout;
 use Salador\Uslugi\Http\Layouts\Master\EditPriceLayout;
 use Salador\Uslugi\Http\Layouts\Master\EditBalanceLayout;
 use Salador\Uslugi\Http\Layouts\Master\EditLeadLayout;
+use Salador\Uslugi\Http\Layouts\Master\EditAdvPriceLayout;
 
 
 
@@ -59,8 +64,14 @@ class MasterEdit extends Screen
 		//dd($master);
 		$services = new Service;
 		$typetrans = new TypeTran;
+		$advtype = new AdvType;
 		//dd($service->GetServices());
 		//$this->attributes['services_id'] =$services->GetAll();
+		
+		//$faker = \Faker\Factory::create('ru_RU');
+
+		//$name1=$faker->randomElements($array = array ('гаража','дома','дома','земельного участка'))[0];
+		//dd($name1);
 		
 		
         return [
@@ -70,6 +81,8 @@ class MasterEdit extends Screen
             'balance'   => $master->balance()->orderByDesc('updated_at')->paginate(10),
             'leads'   	=> $master->leads()->orderByDesc('updated_at')->paginate(10),
 			'typetrans'	=> $typetrans->GetAll(),
+			'advtype'	=> $advtype->GetAll(),
+            'advprices'	=> $master->advprice()->orderByDesc('updated_at')->paginate(10),			
         ];
     }
 
@@ -94,6 +107,10 @@ class MasterEdit extends Screen
                 ->modal('AddLead')
                 ->title('Add Lead')
                 ->method('createAddLead'),	
+			Link::name('AddAdvPrice')
+                ->modal('AddAdvPrice')
+                ->title('Add AdvPrice')
+                ->method('createAddAdvPrice'),	
 				
             Link::name('Save')->method('save'),
             Link::name('Remove')->method('remove'),
@@ -121,6 +138,9 @@ class MasterEdit extends Screen
 				'Leads' => [
                     MasterLeadLayout::class
                 ],
+				'AdvPrice' => [
+                    MasterAdvPriceLayout::class
+                ],
             ]),
             // Modals windows
 			
@@ -134,6 +154,9 @@ class MasterEdit extends Screen
                 'AddLead' => [
                     EditLeadLayout::class,
                 ],
+                'AddAdvPrice' => [
+                    EditAdvPriceLayout::class,
+                ],
             ]),
 			
         ];
@@ -146,7 +169,9 @@ class MasterEdit extends Screen
      */
     public function save($request, Master $master)
     {
-        $master->fill($this->request->get('master'))->save();
+        //dd($this->request->get('master'));
+		$master->fill($this->request->get('master'))->save();
+		
         Alert::info('Master was saved');
 
         return redirect()->route('dashboard.uslugi.master.list');
@@ -200,12 +225,23 @@ class MasterEdit extends Screen
     public function createAddLead(Master $master, LeadRequest $request){
         $lead = new \Salador\Uslugi\Models\Lead;
         //$price->master_id = $request->master['user_id'];//$request->all();
-        $lead->typetran_id = $request->typetrans;
+        $lead->typetran_id = $request->advtype;
         $lead->money = $request->lead['money'];
         $lead->field = $request->lead['field'];
 		//dump($price);
         $master->leads()->save($lead);
         Alert::info('Master lead was added');
+		return redirect()->back();
+    } 
+
+	public function createAddAdvPrice(Master $master, AdvPriceRequest $request){
+        $advprice = new \Salador\Uslugi\Models\AdvPrice;
+        //$price->master_id = $request->master['user_id'];//$request->all();
+        $advprice->advtype_id = $request->advtype;
+        $advprice->price = $request->advprice['price'];
+		//dump($price);
+        $master->advprice()->save($advprice);
+        Alert::info('Master advprice was added');
 		return redirect()->back();
     }
 }

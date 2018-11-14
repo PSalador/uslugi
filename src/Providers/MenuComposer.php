@@ -4,6 +4,8 @@ namespace Salador\Uslugi\Providers;
 
 use Orchid\Platform\Kernel\Dashboard;
 
+use Salador\Uslugi\Models\Master;
+
 class MenuComposer
 {
 
@@ -64,14 +66,20 @@ class MenuComposer
                 'sort'       => 13,
             ]);
 			$this->menu->add('Uslugi', [
-                'slug'       => 'balance',
+                'slug'       => 'master',
                 'icon'       => 'fa fa-television',
                 'route'      => route('dashboard.uslugi.master.list'),
-                'label'      => trans('salador/uslugi::uslugi.Balance.Title'),
+                'label'      => trans('salador/uslugi::uslugi.Master.Titles'),
 				'groupname'  => trans('salador/uslugi::uslugi.AdminMenuGroup'),
 				'divider'    => false,
                 'permission' => 'dashboard.uslugi.services',
                 'sort'       => 21,
+				'badge'   => [
+					'class'  => 'bg-dark',
+					'data'	 => function () {
+						return Master::count();
+					},
+				],
             ]);
 			$this->menu->add('Uslugi', [
                 'slug'       => 'typetran',
@@ -82,7 +90,25 @@ class MenuComposer
                 'permission' => 'dashboard.uslugi.services',
                 'sort'       => 22,
             ]);		
-			
+			$this->menu->add('Uslugi', [
+                'slug'       => 'advtype',
+                'icon'       => 'fa fa-television',
+                'route'      => route('dashboard.uslugi.advtype.list'),
+                'label'      => trans('salador/uslugi::uslugi.Advert.TypeTitle'),
+				'divider'    => false,
+                'permission' => 'dashboard.uslugi.services',
+                'sort'       => 23,
+            ]);		
+			$this->menu->add('Uslugi', [
+                'slug'       => 'filter',
+                'icon'       => 'fa fa-television',
+                'route'      => route('dashboard.uslugi.filter.list'),
+                'label'      => 'Filter',
+				'groupname'  => 'Filter groupe',
+				'divider'    => false,
+                'permission' => 'dashboard.uslugi.services',
+                'sort'       => 23,
+            ]);		
 			
 	
 

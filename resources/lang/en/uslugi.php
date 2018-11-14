@@ -19,7 +19,7 @@ return [
         'email'       		=> 'Email',
         'location'       	=> 'Location',
     ],
-	'Price'		=> [
+	'Price'			=> [
         'Title'           	=> 'Price',
         'Titles'           	=> 'Prices',
         'description'       => 'Price description',
@@ -30,10 +30,13 @@ return [
         'novalue'           => 'No Value',
     ],
 	'Balance'		=> [
-        'Title'           => 'Balance',
+        'Title'           	=> 'Balance',
     ],
-	'Transactions'		=> [
-        'Title'           => 'Transaction',
+	'Transactions'	=> [
+        'Title'           	=> 'Transaction',
+    ],
+	'Advert'		=> [
+        'TypeTitle'         => 'Advertising',
     ],
 	
 	

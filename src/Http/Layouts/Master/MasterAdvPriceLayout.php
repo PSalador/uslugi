@@ -4,13 +4,13 @@ namespace Salador\Uslugi\Http\Layouts\Master;
 
 use Orchid\Platform\Layouts\Table;
 
-class MasterLeadLayout extends Table
+class MasterAdvPriceLayout extends Table
 {
 
     /**
      * @var string
      */
-    public $data = 'leads';
+    public $data = 'advprices';
 
     /**
      * @return array
@@ -23,14 +23,13 @@ class MasterLeadLayout extends Table
             //'service-name' => 'Service',
 			'advtype-name'  => [
                 'name'   => 'advtype',
-                'action' => function ($leads) {
+                'action' => function ($advprices) {
 					//dump($price->service()->first()->name);
-                    return '<a href="' . route('dashboard.uslugi.master.lead',
-                            $leads->id) . '">' . $leads->advtype()->first()->name . '</a>';
+                    return '<a href="' . route('dashboard.uslugi.master.advprice',
+                            $advprices->id) . '">' . $advprices->advtype()->first()->name . '</a>';
                 },
             ],
-            'money' 	=> 'Money',
-            'field'     => 'Field',
+            'price' 	=> 'Price',
         ];
     }
 }

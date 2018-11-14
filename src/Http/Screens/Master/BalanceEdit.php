@@ -43,14 +43,18 @@ class BalanceEdit extends Screen
     {
         //dump($balance);
 		$balance = is_null($balance) ? new Balance() : $balance;
+		//dump($balance->typetran_id);
 		$typetrans = new TypeTran;
+		
+		//$typetrans = $typetrans->GetAllDefault($balance->typetran_id);
+		//dd($typetrans);
 		//dd($service->GetServices());
 		//$this->attributes['services_id'] =$services->GetAll();
 		
 		
         return [
             'balance'   => $balance,
-			'typetrans'	=> $typetrans->GetAll(),
+			'typetrans'	=> $typetrans->GetAllDefault($balance->typetran_id),
         ];
     }
 

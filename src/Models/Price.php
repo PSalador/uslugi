@@ -8,6 +8,7 @@ use Salador\Uslugi\Models\Service as Service;
 
 class Price extends Model
 {
+	use Traits\FilterPriceTrait;
     //
 	protected $table = 'Prices';  //Подключить таблицу к модели  по умолчению название класса+s (Services)
 	

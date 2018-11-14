@@ -4,7 +4,7 @@ namespace Salador\Uslugi\Http\Layouts\Master;
 
 use Orchid\Platform\Layouts\Rows;
 
-class EditLeadLayout extends Rows
+class EditAdvPriceLayout extends Rows
 {
     /**
      * Views
@@ -18,7 +18,7 @@ class EditLeadLayout extends Rows
 		    'master_id'     => [
                 'tag'         => 'input',
                 'type'        => 'hidden',
-                'name'        => 'lead.master_id',
+                'name'        => 'advprice.master_id',
             ],
 		    'advtype'     => [
                 'tag'         => 'select',
@@ -31,22 +31,14 @@ class EditLeadLayout extends Rows
 				'novalue'	  => trans('salador/uslugi::uslugi.Select.novalue'),
 			],
 			
-            'money'     => [
+            'price'     => [
                 'tag'         => 'input',
                 'type'        => 'text',
-                'name'        => 'lead.money',
+                'name'        => 'advprice.price',
                 'max'         => 255,
                 'required'    => true,
                 'title'       => trans('salador/uslugi::uslugi.Price.volume'),
                 'placeholder' => trans('salador/uslugi::uslugi.Price.volume'),
-            ],
-            'field' => [
-                'tag'         => 'input',
-                'type'        => 'text',
-                'name'     	  => 'lead.field',
-                'required'    => true,
-                'title'       => trans('salador/uslugi::uslugi.Transactions.Title'),
-                'placeholder' => trans('salador/uslugi::uslugi.Transactions.Title'),
             ],
         ];
     }

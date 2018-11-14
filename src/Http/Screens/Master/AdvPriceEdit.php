@@ -8,29 +8,29 @@ use Orchid\Platform\Screen\Screen;
 
 use Salador\Uslugi\Models\Master;
 use Salador\Uslugi\Models\AdvType;
-use Salador\Uslugi\Models\Lead;
+use Salador\Uslugi\Models\AdvPrice;
 
 
-use Salador\Uslugi\Http\Requests\LeadRequest;
-use Salador\Uslugi\Http\Layouts\Master\EditLeadLayout;
+use Salador\Uslugi\Http\Requests\AdvPriceRequest;
+use Salador\Uslugi\Http\Layouts\Master\EditAdvPriceLayout;
 
 
 
-class LeadEdit extends Screen
+class AdvPriceEdit extends Screen
 {
     /**
      * Display header name
      *
      * @var string
      */
-    public $name = 'Lead edit';
+    public $name = 'AdvPrice edit';
 
     /**
      * Display header description
      *
      * @var string
      */
-    public $description = 'There is a record of the lead';
+    public $description = 'There is a record of the advprice';
 
     /**
      * Query data
@@ -39,18 +39,18 @@ class LeadEdit extends Screen
      *
      * @return array
      */
-    public function query($lead = null) : array
+    public function query($advprice = null) : array
     {
         //dump($balance);
-		$lead = is_null($lead) ? new Lead() : $lead;
+		$advprice = is_null($advprice) ? new AdvPrice() : $advprice;
 		$advtype = new AdvType;
 		//dd($service->GetServices());
 		//$this->attributes['services_id'] =$services->GetAll();
 		
 		
         return [
-            'lead'   => $lead,
-			'advtype'	=> $advtype->GetAllDefault($lead->typetran_id),
+            'advprice'   => $advprice,
+			'advtype'	=> $advtype->GetAllDefault($advprice->advtype_id),
         ];
     }
 
@@ -77,8 +77,8 @@ class LeadEdit extends Screen
         return [
 		
 		    Layouts::columns([
-                'EditLead' => [
-                    EditLeadLayout::class
+                'EditAdvPrice' => [
+                    EditAdvPriceLayout::class
                 ],
             ]),
 		
@@ -90,16 +90,16 @@ class LeadEdit extends Screen
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function save($request, Lead $lead)
+    public function save($request, AdvPrice $advprice)
     {
-        $lead->fill($this->request->get('lead'));
-		$lead->typetran_id = $this->request->advtype;
+        $advprice->fill($this->request->get('advprice'));
+		$advprice->advtype_id = $this->request->advtype;
 		//dd($balance);
-		$lead->save();
+		$advprice->save();
 		
-        Alert::info('Lead was saved');
+        Alert::info('AdvPrice was saved');
 
-        return redirect()->route('dashboard.uslugi.master.edit', $this->request->get('lead')['master_id']);
+        return redirect()->route('dashboard.uslugi.master.edit', $this->request->get('advprice')['master_id']);
     }
 
     /**
@@ -108,13 +108,13 @@ class LeadEdit extends Screen
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function remove($request, Lead $lead)
+    public function remove($request, AdvPrice $advprice)
     {
         //dd($this->request);
-		$lead->delete();
-        Alert::info('Lead was removed');
+		$advprice->delete();
+        Alert::info('AdvPrice was removed');
 
-        return redirect()->route('dashboard.uslugi.master.edit', $this->request->get('lead')['master_id']);
+        return redirect()->route('dashboard.uslugi.master.edit', $this->request->get('advprice')['master_id']);
     }
 
 }

@@ -70,6 +70,11 @@ class Master extends Model
     {
         return $this->hasMany(Lead::class);
     }
+
+	public function advprice()
+    {
+        return $this->hasMany(AdvPrice::class);
+    }
 	
 	public function setAdressJson()
     {

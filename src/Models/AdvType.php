@@ -5,16 +5,16 @@ namespace Salador\Uslugi\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
-class TypeTran extends Model
+class AdvType extends Model
 {
     //
-	protected $table = 'TypeTrans';  //Подключить таблицу к модели  по умолчению название класса+s (Services)
+	protected $table = 'AdvType';  //Подключить таблицу к модели  по умолчению название класса+s (Services)
 	
 	
 	
 	protected $fillable = [
         'name',
-        'plus',
+        'class',
         'desc',
     ];							// Поля массово изменяемые
 	
@@ -28,18 +28,19 @@ class TypeTran extends Model
     public function getContent($key){
         return $this->getAttribute($key);
     }
-	
-	
-	public function balance()
+
+
+	public function advprices()
     {
-        return $this->hasMany(Balance,'typetran_id');
+        return $this->hasMany(AdvPrices,'advtype_id');
     }
-	/*
+	
 	public function leads()
     {
         return $this->hasMany(Lead,'typetran_id');
     }
-	*/
+	
+	
 	public function GetAll()
     {
 		return $this::pluck('name','id')->all();
@@ -47,8 +48,7 @@ class TypeTran extends Model
 	
 	public function GetAllDefault($default)
     {
-		$ArrAll=$this::pluck('name','id')->all();
-		$ArrAll['default']=$default;
-		return $ArrAll;
+		return array_add($this::pluck('name','id')->all(), 'default', $default);
 	}
+	
 }

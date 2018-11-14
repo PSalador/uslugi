@@ -9,8 +9,10 @@ use Orchid\Platform\Widget\WidgetContractInterface;
 
 use Salador\Uslugi\Models\Master;
 use Salador\Uslugi\Models\TypeTran;
+use Salador\Uslugi\Models\AdvType;
 use Salador\Uslugi\Models\Balance;
 use Salador\Uslugi\Models\Lead;
+use Salador\Uslugi\Models\AdvPrice;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -53,11 +55,17 @@ class RouteServiceProvider extends ServiceProvider
 		Route::bind('typetran', function ($value) {
 			return TypeTran::firstOrNew(['id'=>$value]);
         });
+		Route::bind('advtype', function ($value) {
+			return AdvType::firstOrNew(['id'=>$value]);
+        });
 		Route::bind('balance', function ($value) {
 			return Balance::firstOrNew(['id'=>$value]);
         });
 		Route::bind('lead', function ($value) {
 			return Lead::firstOrNew(['id'=>$value]);
+        });
+		Route::bind('advprice', function ($value) {
+			return AdvPrice::firstOrNew(['id'=>$value]);
         });
     }
 

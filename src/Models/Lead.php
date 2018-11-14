@@ -34,11 +34,22 @@ class Lead extends Model
     {
         return $this->belongsTo('Salador\Uslugi\Models\Master','master_id');   //Добавляем таблицу Мастеров
     }
-	
+	/*
 	public function typetran()
     {
         return $this->belongsTo('Salador\Uslugi\Models\TypeTran', 'typetran_id');
 		//return $this->hasOne(Service::class, 'services_id');
     }
+	*/
+	public function advtype()
+    {
+        return $this->belongsTo('Salador\Uslugi\Models\AdvType', 'typetran_id');
+		//return $this->hasOne(Service::class, 'services_id');
+    }
+	
+	public function GetAllDefault($default)
+    {
+		return array_add($this::pluck('name','id')->all(), 'default', $default);
+	}
 	
 }

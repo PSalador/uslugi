@@ -59,13 +59,20 @@ Route::group([
 		$router->screen('master/{master}/edit', 'Master\MasterEdit',$path.'.master.edit');
 		$router->screen('master/{balance}/balance', 'Master\BalanceEdit',$path.'.master.balance');	
 		$router->screen('master/{lead}/lead', 'Master\LeadEdit',$path.'.master.lead');	
+		$router->screen('master/{advprice}/advprice', 'Master\AdvPriceEdit',$path.'.master.advprice');	
 		$router->screen('master/create', 'Master\MasterEdit',$path.'.master.create');		
 		$router->screen('master', 'Master\MasterList',$path.'.master.list');
 
 		
-		$router->screen('typetran/create', 'TypeTran\TypeTranEdit','dashboard.uslugi.typetran.create');
 		$router->screen('typetran/{typetran}/edit', 'TypeTran\TypeTranEdit','dashboard.uslugi.typetran.edit');
+		$router->screen('typetran/create', 'TypeTran\TypeTranEdit','dashboard.uslugi.typetran.create');
 		$router->screen('typetran', 'TypeTran\TypeTranList','dashboard.uslugi.typetran.list');
+		
+		$router->screen('advtype/{advtype}/edit', 'AdvType\AdvTypeEdit','dashboard.uslugi.advtype.edit');
+		$router->screen('advtype/create', 'AdvType\AdvTypeEdit','dashboard.uslugi.advtype.create');		
+		$router->screen('advtype', 'AdvType\AdvTypeList','dashboard.uslugi.advtype.list');
+		
+		$router->screen('filter', 'Filter\FilterList','dashboard.uslugi.filter.list');
     });		
 	
 //Route::screen('dashboard/news', 'Demo','dashboard.screens.demo.list');
