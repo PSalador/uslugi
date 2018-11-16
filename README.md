@@ -21,8 +21,11 @@ git config user.email ivanov@example.com
 ```
 Клонирование ветки 
 `git checkout -b new_branch`
+
 Анологично предыдущему:
+
 Клонирование ветки: `git branch new_feature`
+
 Переключиться на другую ветку: `git checkout new_feature`
 
 Узнать в правильном ли каталоге, и какие изменение есть
